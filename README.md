@@ -11,7 +11,7 @@ _Untuk perintah yang dibungkus < > maka perintah tersebut diganti sesuai instruk
   ```
 - Pindah ke repositori hasil clone dengan perintah berikut
   ```
-  cd Asistensi-08-Lab-Web-2022
+  cd LAB-BASIS-DATA-2023-KLP-8
   ```
 - Buat folder baru berdasarkan NIM kalian
   ```
