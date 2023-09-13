@@ -13,7 +13,7 @@ _Untuk perintah yang dibungkus < > maka perintah tersebut diganti sesuai instruk
   ```
   cd LAB-BASIS-DATA-2023-KLP-8
   ```
-  - Buat branch baru berdasarkan NIM kalian serta gunakan branch tersebut untuk menyimpan kode dari soal yang dikerjakan
+- Buat branch baru berdasarkan NIM kalian serta gunakan branch tersebut untuk menyimpan kode dari soal yang dikerjakan
   ```
   git checkout -b <NIM>
   ```
