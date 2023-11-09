@@ -1,0 +1,23 @@
+CREATE DATABASE IF NOT EXISTS library;
+USE library;
+
+CREATE TABLE if NOT EXISTS books(
+	id INT AUTO_INCREMENT,
+	isbn VARCHAR(50) UNIQUE,
+	title VARCHAR(50) NOT NULL,
+	pages INT,
+	summary TEXT,
+	genre VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+ALTER TABLE books
+MODIFY isbn CHAR(13) UNIQUE;
+
+ALTER TABLE books 
+DROP column summary;
+
+DESCRIBE books;
+
+
+
