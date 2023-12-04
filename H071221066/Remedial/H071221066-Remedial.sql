@@ -11,10 +11,12 @@ JOIN customer c USING(customer_id)
 JOIN staff s USING(staff_id)
 JOIN address a ON s.address_id = a.address_id
 WHERE 
-	p.amount > (SELECT AVG(amount) * 0.1 FROM payment) AND
+	p.amount > (SELECT AVG(amount) * 1.1 FROM payment) AND
 	a.address = '1411 Lillydale Drive' AND
 	LEFT(c.first_name, 1) = RIGHT(c.last_name, 1)
-GROUP BY staff_address;
+ORDER BY p.amount DESC
+LIMIT 1;
+
 
 # No 4
 SELECT
