@@ -28,7 +28,7 @@ ORDER BY `Jumlah_Rental` ASC;
 
 -- nomor 3
 SELECT CONCAT(customer.first_name, ' ', customer.last_name) AS 'customer_name',
-    	 payment.amount AS 'amount',
+    	 max(payment.amount) AS 'amount',
     	 CONCAT(staff.first_name, ' ', staff.last_name) AS 'staff_name',
     	 ad.address AS 'staff_address'
 FROM customer
@@ -41,11 +41,13 @@ ON staff.address_id = ad.address_id
 WHERE
     ad.address = '1411 Lillydale Drive'
     AND LEFT(customer.first_name, 1) = RIGHT(customer.last_name, 1)
-    AND payment.amount > 0.1 * (SELECT AVG(amount) 
-	 									  FROM payment
-										  JOIN customer
-										  USING(customer_id))
-GROUP BY `staff_name`;
+    AND payment.amount > 0.1 * (SELECT AVG(amount)
+	 									  FROM payment)
+	 AND LENGTH(customer.first_name) = 5 AND LENGTH(customer.last_name) = 7
+	 AND customer.first_name LIKE 'T%'
+GROUP BY customer.customer_id
+HAVING MAX(payment.amount);
+
 
 -- nomor 4
 SELECT customer.first_name AS 'nama_depan',
