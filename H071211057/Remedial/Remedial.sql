@@ -5,20 +5,21 @@ join film_actor fa on f.film_id = fa.film_id
 join actor a on fa.actor_id = a.actor_id 
 group by f.title
 having count(fa.actor_id) >=10
-order by f.title desc
+order by f.title asc
 
 #2
-SELECT f.title, f.description, COUNT(r.rental_id) AS jumlah_sewa
-FROM film f
-JOIN film_category fc ON f.film_id = fc.film_id
-JOIN category c ON fc.category_id = c.category_id
+select f.title AS judul_film,
+       f.description AS deskripsi_film,
+       count(r.rental_id) AS jumlah_sewa
+from film f
+join film_category fc on f.film_id = fc.film_id
+join category c on fc.category_id = c.category_id
 JOIN inventory i ON f.film_id = i.film_id
 JOIN rental r ON i.inventory_id = r.inventory_id
-JOIN film_actor fa ON f.film_id = fa.film_id
-JOIN actor a ON fa.actor_id = a.actor_id
 WHERE f.description LIKE '%Dog%' AND f.description LIKE '%Chef%'
 GROUP BY f.film_id
-ORDER BY jumlah_sewa ASC;
+ORDER BY jumlah_sewa;
+
 
 #3
 SELECT 
