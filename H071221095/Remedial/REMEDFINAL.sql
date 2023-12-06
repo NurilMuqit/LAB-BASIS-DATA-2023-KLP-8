@@ -42,20 +42,18 @@ ORDER BY
 
 # nomor 3        
 SELECT CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
-		p.amount AS amount,
-		CONCAT('s.first_name', ' ', s.last_name) AS staff_name,
-		ad.address AS staff_address
-FROM customer c
-JOIN payment p USING (customer_id)
+	p.amount,
+	CONCAT(s.first_name, ' ', s.last_name) AS staff_name,
+	ad.address AS staff_address
+FROM payment p
+JOIN customer c USING (customer_id)
 JOIN staff s USING (staff_id)
 JOIN address ad ON s.address_id = ad.address_id
-WHERE ad.address = '1411 Lillydale Drive'
+WHERE p.amount > (SELECT AVG(amount) * 1.1 FROM payment)
+	AND ad.address = '1411 Lillydale Drive'
 	AND LEFT(c.first_name, 1) = RIGHT(c.last_name, 1)
-	AND p.amount > 0.1 * (SELECT AVG(amount) 
-	 					      FROM payment p
-						      JOIN customer c
-						      USING(customer_id))
-GROUP BY staff_name;
+ORDER BY p.amount DESC
+LIMIT 1;
 
 # nomor 4
 SELECT c.first_name AS 'nama_depan',
